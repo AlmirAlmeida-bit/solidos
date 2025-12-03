@@ -638,6 +638,8 @@ header h1 {
         padding: 20px;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
+        max-height: 100vh;
     }
     
     .loading-canvas {
@@ -645,7 +647,9 @@ header h1 {
         width: 100%;
         height: 400px;
         min-height: 400px;
+        max-height: 60vh;
         margin: 0 auto;
+        overflow: hidden;
     }
     
     .loading-equacao {
@@ -720,6 +724,10 @@ header h1 {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
+        align-self: stretch !important;
+        justify-self: stretch !important;
+        margin: 0 !important;
+        padding: 15px !important;
     }
     
     .solido-card {
@@ -734,6 +742,7 @@ header h1 {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
+        align-self: stretch;
     }
     
     .solido-info {
@@ -870,6 +879,8 @@ header h1 {
         padding: 15px;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
+        max-height: 100vh;
     }
     
     .loading-canvas {
@@ -877,7 +888,9 @@ header h1 {
         width: 100%;
         height: 350px;
         min-height: 350px;
+        max-height: 55vh;
         margin: 0 auto;
+        overflow: hidden;
     }
     
     .loading-equacao {
@@ -950,6 +963,10 @@ header h1 {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
+        align-self: stretch !important;
+        justify-self: stretch !important;
+        margin: 0 !important;
+        padding: 12px !important;
     }
     
     .solido-card {
@@ -963,6 +980,7 @@ header h1 {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
+        align-self: stretch;
     }
     
     .solido-card h2 {
