@@ -314,43 +314,22 @@ function mostrarVisualizacao(tipo, botaoElemento = null) {
         textoExplicativo.innerHTML = '<h3 class="titulo-natureza">Onde Achamos na Natureza:</h3>' + dados.texto;
     }
     
-    // Verifica se é mobile e centraliza o modal mais em relação ao body
+    // Verifica se é mobile e centraliza o modal no meio exato da tela
     const isMobile = window.innerWidth <= 768;
-    if (isMobile && botaoElemento) {
-        const card = botaoElemento.closest('.solido-card');
+    if (isMobile) {
         const scrollY = window.scrollY || window.pageYOffset;
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
         
         // Calcula dimensões do modal
         const modalWidth = Math.min(viewportWidth - 40, 400);
-        const estimatedHeight = 500; // Altura estimada do modal
         
-        // Centraliza horizontalmente
+        // Centraliza horizontalmente no meio exato
         const leftPosition = (viewportWidth - modalWidth) / 2;
         
-        // Centraliza verticalmente, mas com leve deslocamento em direção ao card
-        let topPosition;
-        if (card) {
-            const cardRect = card.getBoundingClientRect();
-            const cardCenterY = cardRect.top + scrollY + (cardRect.height / 2);
-            const viewportCenterY = scrollY + (viewportHeight / 2);
-            
-            // Interpola entre o centro da viewport e o centro do card (70% viewport, 30% card)
-            const targetY = viewportCenterY * 0.7 + cardCenterY * 0.3;
-            topPosition = targetY - (estimatedHeight / 2);
-            
-            // Garante que não saia da tela
-            if (topPosition < scrollY + 10) {
-                topPosition = scrollY + 10;
-            }
-            if (topPosition + estimatedHeight > scrollY + viewportHeight - 10) {
-                topPosition = scrollY + viewportHeight - estimatedHeight - 10;
-            }
-        } else {
-            // Se não encontrar o card, centraliza completamente
-            topPosition = scrollY + (viewportHeight - estimatedHeight) / 2;
-        }
+        // Centraliza verticalmente no meio exato da viewport
+        // Usa scrollY para considerar o scroll atual
+        const topPosition = scrollY + (viewportHeight / 2);
         
         // Posiciona o container centralizado
         visualizacaoContainer.style.position = 'absolute';
@@ -358,7 +337,7 @@ function mostrarVisualizacao(tipo, botaoElemento = null) {
         visualizacaoContainer.style.left = `${leftPosition}px`;
         visualizacaoContainer.style.right = 'auto';
         visualizacaoContainer.style.bottom = 'auto';
-        visualizacaoContainer.style.transform = 'none';
+        visualizacaoContainer.style.transform = 'translateY(-50%)';
         visualizacaoContainer.style.margin = '0';
         visualizacaoContainer.style.maxWidth = `${modalWidth}px`;
     } else {
@@ -397,14 +376,14 @@ function mostrarVisualizacao(tipo, botaoElemento = null) {
             }
         );
         
-        if (isMobile && botaoElemento) {
-            // Animação do mobile: aparece próximo ao card
+        if (isMobile) {
+            // Animação do mobile: aparece centralizado
             gsap.fromTo(visualizacaoContainer,
-                { scale: 0.8, opacity: 0, y: 20 },
+                { scale: 0.8, opacity: 0, y: -50 },
                 {
                     scale: 1,
                     opacity: 1,
-                    y: 0,
+                    y: -50, // Mantém o translateY(-50%) para centralização
                     duration: 0.5,
                     delay: 0.1,
                     ease: "back.out(1.7)"
